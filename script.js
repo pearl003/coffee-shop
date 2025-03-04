@@ -65,3 +65,19 @@ function saveCart() {
 
 // 初始化购物车数量
 updateCartCount();
+function openCart() {
+    let cartModal = document.getElementById("cart-modal");
+    cartModal.style.display = "block";
+    cartModal.style.opacity = 0;
+    setTimeout(() => {
+        cartModal.style.opacity = 1;
+    }, 10);
+}
+
+function closeCart() {
+    let cartModal = document.getElementById("cart-modal");
+    cartModal.style.opacity = 0;
+    setTimeout(() => {
+        cartModal.style.display = "none";
+    }, 300);
+}
