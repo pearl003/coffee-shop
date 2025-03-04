@@ -1,11 +1,100 @@
-body {
-    font-family: Arial, sans-serif;
-    text-align: center;
-    padding: 50px;
-}
-
-button {
-    padding: 10px 20px;
-    font-size: 18px;
-    cursor: pointer;
-}
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>咖啡店</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background-color: #3e2723;
+            color: #f5f5dc;
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+        }
+        header {
+            background: #5d4037;
+            padding: 20px;
+            color: white;
+            font-size: 24px;
+        }
+        .menu {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .coffee-item {
+            background: #6d4c41;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+        }
+        .coffee-item img {
+            width: 150px;
+            height: 150px;
+            border-radius: 10px;
+        }
+        button {
+            background: #d7ccc8;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background: #bcaaa4;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>欢迎来到我们的咖啡店 ☕</h1>
+        <button onclick="viewCart()">🛒 购物车 (<span id="cart-count">0</span>)</button>
+    </header>
+    
+    <section class="menu">
+        <div class="coffee-item" data-name="美式咖啡" data-price="15">
+            <img src="americano.jpg" alt="美式咖啡">
+            <h2>美式咖啡</h2>
+            <p>¥15</p>
+            <button onclick="addToCart('美式咖啡', 15)">加入购物车</button>
+        </div>
+        <div class="coffee-item" data-name="拿铁" data-price="20">
+            <img src="latte.jpg" alt="拿铁">
+            <h2>拿铁</h2>
+            <p>¥20</p>
+            <button onclick="addToCart('拿铁', 20)">加入购物车</button>
+        </div>
+        <div class="coffee-item" data-name="卡布奇诺" data-price="22">
+            <img src="cappuccino.jpg" alt="卡布奇诺">
+            <h2>卡布奇诺</h2>
+            <p>¥22</p>
+            <button onclick="addToCart('卡布奇诺', 22)">加入购物车</button>
+        </div>
+    </section>
+    
+    <div id="cart-modal" class="modal">
+        <div class="modal-content">
+            <h2>购物车</h2>
+            <ul id="cart-items"></ul>
+            <p><strong>总价: ¥<span id="total-price">0</span></strong></p>
+            <button onclick="checkout()">提交订单</button>
+            <button onclick="closeCart()">关闭</button>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
