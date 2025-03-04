@@ -20,6 +20,10 @@
             color: white;
             font-size: 24px;
             box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
         }
         .menu {
             display: flex;
@@ -90,12 +94,24 @@
         #cart-items button:hover {
             background: darkred;
         }
+        #login-button {
+            background: #8d6e63;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+        }
+        #login-button:hover {
+            background: #6d4c41;
+        }
     </style>
 </head>
 <body>
     <header>
         <h1>欢迎来到我们的咖啡店 ☕</h1>
-        <button onclick="viewCart()">🛒 购物车 (<span id="cart-count">0</span>)</button>
+        <div>
+            <button id="login-button" onclick="openLoginModal()">登录</button>
+            <button onclick="viewCart()">🛒 购物车 (<span id="cart-count">0</span>)</button>
+        </div>
     </header>
     
     <section class="menu">
@@ -118,6 +134,16 @@
             <button onclick="addToCart('卡布奇诺', 22)">加入购物车</button>
         </div>
     </section>
+    
+    <div id="login-modal" class="modal">
+        <div class="modal-content">
+            <h2>用户登录</h2>
+            <input type="text" id="username" placeholder="请输入用户名"><br><br>
+            <input type="password" id="password" placeholder="请输入密码"><br><br>
+            <button onclick="login()">登录</button>
+            <button onclick="closeLoginModal()">取消</button>
+        </div>
+    </div>
     
     <div id="cart-modal" class="modal">
         <div class="modal-content">
