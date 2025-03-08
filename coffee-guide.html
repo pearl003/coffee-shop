@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PoP Coffee - 咖啡指南</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .guide-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        
+        .guide-section {
+            margin-bottom: 4rem;
+        }
+        
+        .method-card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
+        
+        .method-header {
+            background: #e67e22;
+            color: white;
+            padding: 1rem;
+        }
+        
+        .method-content {
+            padding: 1.5rem;
+        }
+        
+        .step-list {
+            list-style-type: none;
+            padding: 0;
+            counter-reset: step-counter;
+        }
+        
+        .step-list li {
+            margin-bottom: 1rem;
+            padding-left: 2.5rem;
+            position: relative;
+        }
+        
+        .step-list li::before {
+            content: counter(step-counter);
+            counter-increment: step-counter;
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 1.8rem;
+            height: 1.8rem;
+            background: #e67e22;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+        }
+        
+        .knowledge-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .knowledge-card {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .knowledge-card h3 {
+            color: #e67e22;
+            margin-top: 0;
+        }
+        
+        .back-btn {
+            display: inline-block;
+            background: #e67e22;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background 0.3s ease;
+        }
+        
+        .back-btn:hover {
+            background: #d35400;
+        }
+    </style>
+</head>
+<body>
+    <div class="guide-container">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+            <h1>咖啡指南</h1>
+            <a href="index.html" class="back-btn">返回首页</a>
+        </div>
+
+        <div class="guide-section">
+            <h2>咖啡制作方法</h2>
+            
+            <div class="method-card">
+                <div class="method-header">
+                    <h3>摩卡壶制作方法</h3>
+                </div>
+                <div class="method-content">
+                    <ul class="step-list">
+                        <li>将研磨好的咖啡粉装入过滤器，不要压实，注意不要超过容器边缘</li>
+                        <li>在下壶中加入适量热水（80-90℃），水位不要超过安全阀</li>
+                        <li>将过滤器放入下壶，上紧上壶</li>
+                        <li>将摩卡壶放在小火上加热</li>
+                        <li>听到咕噜声后，打开壶盖观察</li>
+                        <li>当咖啡液呈浅黄色时，取下摩卡壶，关火</li>
+                        <li>等待咖啡完全流出，即可享用</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="method-card">
+                <div class="method-header">
+                    <h3>Aeropress制作方法</h3>
+                </div>
+                <div class="method-content">
+                    <ul class="step-list">
+                        <li>将滤纸放入滤帽并预热冲洗</li>
+                        <li>将Aeropress倒置，加入15g研磨好的咖啡粉</li>
+                        <li>倒入90℃热水200ml，快速搅拌10-15秒</li>
+                        <li>盖上滤帽，静置1分钟</li>
+                        <li>将Aeropress翻转放在杯子上</li>
+                        <li>稳定均匀地压下活塞，30秒内完成</li>
+                        <li>当听到"嘶嘶"声时停止，移除器具即可享用</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="method-card">
+                <div class="method-header">
+                    <h3>手冲咖啡制作方法</h3>
+                </div>
+                <div class="method-content">
+                    <ul class="step-list">
+                        <li>将滤纸放入滤杯，用热水预热并冲洗滤纸</li>
+                        <li>加入20g中细研磨的咖啡粉，抖平粉床</li>
+                        <li>注入40g水预浸泡30秒，让咖啡粉充分膨胀</li>
+                        <li>以螺旋方式缓慢注入剩余260g水</li>
+                        <li>保持水位稳定，总冲煮时间控制在2.5-3分钟</li>
+                        <li>等待所有水滤过，移除滤杯</li>
+                        <li>轻轻搅拌咖啡，即可享用</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="guide-section">
+            <h2>咖啡知识普及</h2>
+            
+            <div class="knowledge-grid">
+                <div class="knowledge-card">
+                    <h3>咖啡的起源</h3>
+                    <p>咖啡最早发现于埃塞俄比亚，相传是一位牧羊人发现羊吃了某种果实后变得异常活跃。这种果实就是咖啡果，经过阿拉伯商人的传播，咖啡逐渐流传到世界各地。</p>
+                </div>
+                
+                <div class="knowledge-card">
+                    <h3>咖啡品种</h3>
+                    <p>世界上主要有两种咖啡豆：阿拉比卡（Arabica）和罗布斯塔（Robusta）。阿拉比卡品质更高，风味更丰富；罗布斯塔咖啡因含量更高，口感更浓烈。</p>
+                </div>
+                
+                <div class="knowledge-card">
+                    <h3>烘焙程度</h3>
+                    <p>咖啡豆的烘焙程度从浅到深分为：浅烘焙（保留原豆风味）、中烘焙（平衡性好）、中深烘焙（略带苦味）和深烘焙（苦味明显）。不同烘焙程度会带来不同的风味特点。</p>
+                </div>
+                
+                <div class="knowledge-card">
+                    <h3>研磨度</h3>
+                    <p>不同的冲煮方法需要不同的研磨度：意式浓缩需要极细研磨，手冲需要中等研磨，冷萃需要粗研磨。研磨度会直接影响咖啡的萃取程度和口感。</p>
+                </div>
+                
+                <div class="knowledge-card">
+                    <h3>水温与萃取</h3>
+                    <p>理想的萃取水温在90-96℃之间，温度过高会过度萃取产生苦味，温度过低则会导致欠萃取，口感酸涩。萃取时间也需要根据不同的冲煮方法来调整。</p>
+                </div>
+                
+                <div class="knowledge-card">
+                    <h3>咖啡储存</h3>
+                    <p>新鲜烘焙的咖啡豆最佳饮用期为15-30天。建议将咖啡豆存放在密封容器中，避免阳光直射，放在阴凉干燥处。不建议将咖啡豆冷藏，因为会影响风味。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 

@@ -65,3 +65,8 @@ function saveCart() {
 
 // 初始化购物车数量
 updateCartCount();
+
+function switchTab(tabId) {
+    // ...
+    event.target.classList.add('active');  // event 未定义
+}

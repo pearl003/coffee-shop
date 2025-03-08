@@ -3,46 +3,194 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>咖啡店</title>
+    <title>PoP Coffee</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <h1>欢迎来到我们的咖啡店</h1>
-        <button onclick="viewCart()">🛒 购物车 (<span id="cart-count">0</span>)</button>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">PoP</a>
+            <div class="nav-links">
+                <a href="#coffee">菜单</a>
+                <a href="#beans">咖啡豆</a>
+                <a href="coffee-guide.html">咖啡指南</a>
+                <a href="#about">关于我们</a>
+                <button class="cart-btn" onclick="viewCart()">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span id="cart-count">0</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-content">
+            <h1>PoPoffee</h1>
+            <p>每一杯咖啡，都是对品质的追求</p>
+            <a href="#coffee" class="cta-button">浏览菜单</a>
+        </div>
     </header>
-    
-    <section class="menu">
-        <div class="coffee-item" data-name="美式咖啡" data-price="15">
-            <img src="americano.jpg" alt="美式咖啡">
-            <h2>美式咖啡</h2>
-            <p>¥15</p>
-            <button onclick="addToCart('美式咖啡', 15)">加入购物车</button>
-        </div>
-        <div class="coffee-item" data-name="拿铁" data-price="20">
-            <img src="latte.jpg" alt="拿铁">
-            <h2>拿铁</h2>
-            <p>¥20</p>
-            <button onclick="addToCart('拿铁', 20)">加入购物车</button>
-        </div>
-        <div class="coffee-item" data-name="卡布奇诺" data-price="22">
-            <img src="cappuccino.jpg" alt="卡布奇诺">
-            <h2>卡布奇诺</h2>
-            <p>¥22</p>
-            <button onclick="addToCart('卡布奇诺', 22)">加入购物车</button>
+
+    <section id="coffee" class="section">
+        <h2>精选咖啡</h2>
+        <div class="menu-grid">
+            <div class="menu-item">
+                <div class="item-image">
+                    <img src="images/americano.jpg" alt="美式咖啡">
+                </div>
+                <div class="item-content">
+                    <h3>美式咖啡</h3>
+                    <p class="description">使用优质阿拉比卡咖啡豆，完美萃取</p>
+                    <p class="price">¥15</p>
+                    <button onclick="addToCart('美式咖啡', 15)" class="add-to-cart">加入购物车</button>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div class="item-image">
+                    <img src="images/latte.jpg" alt="拿铁">
+                </div>
+                <div class="item-content">
+                    <h3>拿铁</h3>
+                    <p class="description">丝滑奶泡与浓缩咖啡的完美融合</p>
+                    <p class="price">¥20</p>
+                    <button onclick="addToCart('拿铁', 20)" class="add-to-cart">加入购物车</button>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div class="item-image">
+                    <img src="images/cappuccino.jpg" alt="卡布奇诺">
+                </div>
+                <div class="item-content">
+                    <h3>卡布奇诺</h3>
+                    <p class="description">经典意式咖啡，完美比例</p>
+                    <p class="price">¥22</p>
+                    <button onclick="addToCart('卡布奇诺', 22)" class="add-to-cart">加入购物车</button>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div class="item-image">
+                    <img src="images/cold-brew.jpg" alt="冷萃咖啡">
+                </div>
+                <div class="item-content">
+                    <h3>冷萃咖啡</h3>
+                    <p class="description">低温慢萃，口感清爽，回甘持久</p>
+                    <p class="price">¥25</p>
+                    <button onclick="addToCart('冷萃咖啡', 25)" class="add-to-cart">加入购物车</button>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div class="item-image">
+                    <img src="images/matcha-latte.jpg" alt="抹茶拿铁">
+                </div>
+                <div class="item-content">
+                    <h3>抹茶拿铁</h3>
+                    <p class="description">优质抹茶粉与丝滑奶泡的完美融合，清新怡人</p>
+                    <p class="price">¥28</p>
+                    <button onclick="addToCart('抹茶拿铁', 28)" class="add-to-cart">加入购物车</button>
+                </div>
+            </div>
         </div>
     </section>
-    
+
+    <section id="beans" class="section">
+        <h2>精选咖啡豆</h2>
+        <div class="equipment-grid">
+            <div class="equipment-item">
+                <div class="item-image">
+                    <img src="images/ethiopia-beans.jpg" alt="埃塞俄比亚咖啡豆">
+                </div>
+                <div class="item-content">
+                    <h3>埃塞俄比亚耶加雪菲</h3>
+                    <p class="description">花香果香浓郁，柑橘和茉莉花香调，口感清爽</p>
+                    <p class="price">¥128/200g</p>
+                    <button onclick="addToCart('埃塞俄比亚耶加雪菲', 128)" class="add-to-cart">加入购物车</button>
+                </div>
+            </div>
+            <div class="equipment-item">
+                <div class="item-image">
+                    <img src="images/colombia-beans.jpg" alt="哥伦比亚咖啡豆">
+                </div>
+                <div class="item-content">
+                    <h3>哥伦比亚精品豆</h3>
+                    <p class="description">坚果香浓郁，焦糖甜感，口感圆润</p>
+                    <p class="price">¥108/200g</p>
+                    <button onclick="addToCart('哥伦比亚精品豆', 108)" class="add-to-cart">加入购物车</button>
+                </div>
+            </div>
+            <div class="equipment-item">
+                <div class="item-image">
+                    <img src="images/guatemala-beans.jpg" alt="危地马拉咖啡豆">
+                </div>
+                <div class="item-content">
+                    <h3>危地马拉安提瓜</h3>
+                    <p class="description">巧克力香浓郁，焦糖和坚果风味，口感醇厚</p>
+                    <p class="price">¥118/200g</p>
+                    <button onclick="addToCart('危地马拉安提瓜', 118)" class="add-to-cart">加入购物车</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="section">
+        <div class="about-content">
+            <h2>关于 PoP</h2>
+            <p>我们致力于为您提供最优质的咖啡体验。每一杯咖啡都经过精心烘焙和调制，只为带给您最完美的口感。</p>
+        </div>
+    </section>
+
     <div id="cart-modal" class="modal">
         <div class="modal-content">
-            <h2>购物车</h2>
-            <ul id="cart-items"></ul>
-            <p><strong>总价: ¥<span id="total-price">0</span></strong></p>
-            <button onclick="checkout()">提交订单</button>
-            <button onclick="closeCart()">关闭</button>
+            <div class="modal-header">
+                <h2>购物车</h2>
+                <button onclick="closeCart()" class="close-btn">&times;</button>
+            </div>
+            <div class="cart-items">
+                <ul id="cart-items"></ul>
+            </div>
+            <div class="cart-footer">
+                <p class="total">总计: ¥<span id="total-price">0</span></p>
+                <button onclick="checkout()" class="checkout-btn">结算</button>
+            </div>
         </div>
     </div>
-    
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>PoP Coffee</h3>
+                <p>每一杯咖啡，都是对品质的追求</p>
+            </div>
+            <div class="footer-section">
+                <h3>营业时间</h3>
+                <p>周一至周五: 7:00 - 20:00</p>
+                <p>周六周日: 8:00 - 21:00</p>
+            </div>
+            <div class="footer-section">
+                <h3>联系我们</h3>
+                <p>电话: <a href="tel:123-456-7890">123-456-7890</a></p>
+                <p>邮箱: <a href="mailto:info@popcoffee.com">info@popcoffee.com</a></p>
+                <p>地址: <a href="https://maps.google.com" target="_blank">北京市朝阳区咖啡路123号</a></p>
+            </div>
+            <div class="footer-section">
+                <h3>关注我们</h3>
+                <div class="social-links">
+                    <a href="https://weixin.qq.com" target="_blank"><i class="fab fa-weixin"></i></a>
+                    <a href="https://weibo.com" target="_blank"><i class="fab fa-weibo"></i></a>
+                    <a href="https://douyin.com" target="_blank"><i class="fas fa-video"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>管理入口</h3>
+                <a href="admin.html" class="admin-link">订单管理</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 PoP Coffee. All rights reserved.</p>
+        </div>
+    </footer>
+
     <script src="script.js"></script>
 </body>
 </html>

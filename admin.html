@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PoP Coffee - 管理后台</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .admin-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        .order-list {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .order-item {
+            padding: 1.5rem;
+            border-bottom: 1px solid #eee;
+            transition: background-color 0.3s ease;
+        }
+        .order-item:hover {
+            background-color: #f9f9f9;
+        }
+        .order-item:last-child {
+            border-bottom: none;
+        }
+        .order-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        .order-items {
+            margin: 1rem 0;
+            padding: 1rem;
+            background: #f9f9f9;
+            border-radius: 5px;
+            line-height: 1.6;
+        }
+        .order-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #eee;
+        }
+        .status-badge {
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            margin-left: 1rem;
+        }
+        .status-pending {
+            background: #fff3cd;
+            color: #856404;
+        }
+        .status-completed {
+            background: #d4edda;
+            color: #155724;
+        }
+        .status-cancelled {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+        .back-btn {
+            background: #e67e22;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background 0.3s ease;
+        }
+        .back-btn:hover {
+            background: #d35400;
+        }
+        .error {
+            color: #dc3545;
+            padding: 1rem;
+            text-align: center;
+            background: #f8d7da;
+            border-radius: 5px;
+            margin: 1rem 0;
+        }
+        .loading {
+            text-align: center;
+            padding: 2rem;
+            color: #666;
+            font-size: 1.1rem;
+        }
+        .no-orders {
+            text-align: center;
+            padding: 2rem;
+            color: #666;
+            font-size: 1.1rem;
+            background: #f9f9f9;
+            border-radius: 5px;
+            margin: 1rem 0;
+        }
+        .retry-btn {
+            background: #e67e22;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 1rem;
+            transition: background 0.3s ease;
+        }
+        .retry-btn:hover {
+            background: #d35400;
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-container">
+        <div class="admin-header">
+            <h1>订单管理</h1>
+            <a href="index.html" class="back-btn">返回首页</a>
+        </div>
+        <div class="order-list" id="order-list">
+            <!-- 订单将通过 JavaScript 动态加载 -->
+        </div>
+    </div>
+
+    <script>
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleString('zh-CN', {
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+        }
+
+        function getStatusBadgeClass(status) {
+            switch(status) {
+                case 'pending': return 'status-pending';
+                case 'completed': return 'status-completed';
+                case 'cancelled': return 'status-cancelled';
+                default: return 'status-pending';
+            }
+        }
+
+        function getStatusText(status) {
+            switch(status) {
+                case 'pending': return '待处理';
+                case 'completed': return '已完成';
+                case 'cancelled': return '已取消';
+                default: return '待处理';
+            }
+        }
+
+        function loadOrders() {
+            const orderList = document.getElementById('order-list');
+            orderList.innerHTML = '<div class="loading">加载中...</div>';
+
+            fetch('http://localhost:5000/api/orders')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(orders => {
+                    if (orders.length === 0) {
+                        orderList.innerHTML = '<div class="no-orders">暂无订单</div>';
+                        return;
+                    }
+                    orderList.innerHTML = orders.map(order => `
+                        <div class="order-item">
+                            <div class="order-header">
+                                <div>
+                                    <strong>订单号: #${order.id}</strong>
+                                    <span class="status-badge ${getStatusBadgeClass(order.status)}">
+                                        ${getStatusText(order.status)}
+                                    </span>
+                                </div>
+                                <div>${formatDate(order.created_at)}</div>
+                            </div>
+                            <div class="order-items">
+                                ${order.items.map(item => `
+                                    <div>${item.name} x ${item.quantity} - ¥${item.price * item.quantity}</div>
+                                `).join('')}
+                            </div>
+                            <div class="order-footer">
+                                <strong>总计: ¥${order.total_price}</strong>
+                                <div>
+                                    <button onclick="updateOrderStatus(${order.id}, 'completed')" 
+                                            class="status-btn completed">完成订单</button>
+                                    <button onclick="updateOrderStatus(${order.id}, 'cancelled')" 
+                                            class="status-btn cancelled">取消订单</button>
+                                </div>
+                            </div>
+                        </div>
+                    `).join('');
+                })
+                .catch(error => {
+                    console.error('Error loading orders:', error);
+                    orderList.innerHTML = `
+                        <div class="error">
+                            <p>加载订单失败</p>
+                            <p>请确保后端服务器正在运行</p>
+                            <button onclick="loadOrders()" class="retry-btn">重试</button>
+                        </div>
+                    `;
+                });
+        }
+
+        function updateOrderStatus(orderId, status) {
+            fetch(`http://localhost:5000/api/orders/${orderId}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ status })
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                loadOrders(); // 重新加载订单列表
+            })
+            .catch(error => {
+                console.error('Error updating order status:', error);
+                alert('更新订单状态失败，请重试');
+            });
+        }
+
+        // 页面加载时获取订单
+        document.addEventListener('DOMContentLoaded', loadOrders);
+    </script>
+</body>
+</html> 
